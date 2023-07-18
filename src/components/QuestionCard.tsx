@@ -1,5 +1,8 @@
 import React from "react";
 import { AnswerObject } from "../App";
+import { TextContent } from "./TextContent";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 
 type Props = {
   question: string;
@@ -18,25 +21,39 @@ export const QuestionCard: React.FC<Props> = ({
   userAnswer,
   totalQuestions,
 }) => (
-  <div>
-    <p className="number">
-      Question: {questionNr} / {totalQuestions}
-    </p>
+  <Box>
+    <TextContent
+      data={`
+      Question:  ${questionNr} / ${totalQuestions}
+    `}
+    />
 
-    <p dangerouslySetInnerHTML={{ __html: question }}></p>
+    <TextContent htmldata={question} />
 
-    <div>
+    <Box>
       {answers.map((answer) => (
-        <div key={answer}>
-          <button
+        <Box key={answer}>
+          <Button
+            variant="contained"
             disabled={userAnswer ? true : false}
-            value={answer}
             onClick={callback}
+            fullWidth
+            sx={{
+              marginBlockEnd: "1.5em",
+              padding: "2%",
+              fontSize: "1em",
+              color: userAnswer ? "common.white" : "inherit",
+              backgroundColor: userAnswer ? "#ff4081" : "#55c2da",
+              transition: "all 0.5s",
+              "&:hover": {
+                backgroundColor: userAnswer ? "#ff4081" : "#5adbb5",
+              },
+            }}
           >
             <span dangerouslySetInnerHTML={{ __html: answer }} />
-          </button>
-        </div>
+          </Button>
+        </Box>
       ))}
-    </div>
-  </div>
+    </Box>
+  </Box>
 );
