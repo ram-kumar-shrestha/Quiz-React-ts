@@ -2,7 +2,7 @@ import { Container, Card } from "@mui/material";
 import styled from "@emotion/styled";
 import BgImg from "./images/background.jpg";
 
-export const StyledContainer = styled(Container)(() => ({
+export const StyledContainer = styled(Container)(({ theme }) => ({
   position: "relative",
   textAlign: "center",
   paddingBlock: "2%",
@@ -14,12 +14,16 @@ export const StyledContainer = styled(Container)(() => ({
     position: "absolute",
     top: "50%",
     left: "50%",
-    width: "100dvw",
-    height: "100dvh",
+    width: "100svw",
+    height: "100svh",
     transform: "translate(-50%, -50%)",
     background: `url(${BgImg}) center/cover no-repeat`,
     zIndex: -1,
     filter: "blur(0.2em)",
+  },
+  "@media (max-width: 600px)": {
+    maxWidth: "100% !important",
+    paddingInline: "5%",
   },
 }));
 
