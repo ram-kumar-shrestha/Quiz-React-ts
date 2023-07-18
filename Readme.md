@@ -46,3 +46,4 @@ To run the Quiz application locally, follow these steps:
 - TypeScript: A typed superset of JavaScript that compiles to plain JavaScript.
 - HTML: The standard markup language for creating web pages.
 - CSS: The style sheet language used for describing the presentation of a document written in HTML.
+- Materila UI: This package has been used for user interface as the name suggests.
