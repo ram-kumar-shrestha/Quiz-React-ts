@@ -37,6 +37,7 @@ export const QuestionCard: React.FC<Props> = ({
             variant="contained"
             disabled={userAnswer ? true : false}
             onClick={callback}
+            value={answer}
             fullWidth
             sx={{
               marginBlockEnd: "1.5em",
@@ -50,7 +51,7 @@ export const QuestionCard: React.FC<Props> = ({
               },
             }}
           >
-            <span dangerouslySetInnerHTML={{ __html: answer }} />
+            <TextContent htmldata={answer} />
           </Button>
         </Box>
       ))}

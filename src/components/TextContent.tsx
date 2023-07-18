@@ -15,9 +15,13 @@ export const TextContent: React.FC<Props> = ({
   <Typography
     paragraph={true}
     sx={{
+      textTransform: "lowercase",
       fontSize: isScore ? "1.3em" : "1.1em",
       fontWeight: isScore ? "550" : "500",
       margin: "0.3em",
+      "&::first-letter": {
+        textTransform: "uppercase",
+      },
     }}
     dangerouslySetInnerHTML={htmldata ? { __html: htmldata } : undefined}
   >

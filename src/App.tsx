@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { QuestionCard } from "./components/QuestionCard";
+import Grid from "@mui/material/Grid";
+
 import { Difficulty, fetchQuestions, QuestionState } from "./Api";
-
-import Card from "@mui/material/Card";
-
 import { StyledCard, StyledContainer } from "./App.styles";
 import { StyledButton } from "./components/StyledButton";
 import { TextContent } from "./components/TextContent";
 import { Title } from "./components/title/Title";
+import { Spinner } from "./components/Spinner";
 
 export type AnswerObject = {
   question: string;
@@ -56,7 +56,6 @@ function App() {
         correct,
         correctAnswer: questions[number].correct_answer,
       };
-
       setUserAnswers((prev) => [...prev, answerObject]);
     }
   };
@@ -76,10 +75,22 @@ function App() {
   return (
     <StyledContainer>
       <Title />
-      {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-        <StyledButton buttonName="Start" callback={startTrivia} />
+      {gameOver ? (
+        <Grid
+          container
+          justifyContent="center"
+          alignItems="center"
+          sx={{ height: "90%" }}
+        >
+          <StyledButton
+            buttonName="Start"
+            callback={startTrivia}
+            isStartBtn={true}
+          />
+        </Grid>
       ) : null}
-      {loading ? <TextContent data="Loading Questions..." /> : null}
+
+      {loading ? <Spinner /> : null}
 
       {gameStarted ? (
         <StyledCard>
@@ -101,7 +112,7 @@ function App() {
           {!gameOver &&
           !loading &&
           userAnswers.length === number + 1 &&
-          number !== TOTAL_QUESTIONS - 1 ? (
+          number !== TOTAL_QUESTIONS ? (
             <StyledButton callback={nextQuestion} buttonName="Next Question" />
           ) : null}
         </StyledCard>
